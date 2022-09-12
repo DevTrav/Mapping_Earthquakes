@@ -1,0 +1,5 @@
+# Ignore the config.js file
+config.js 
+
+# Ignore Mac finder file
+.DS_Store
