@@ -30,7 +30,7 @@ let map = L.map('mapid', {
 L.control.layers(baseMaps).addTo(map);
 
 // Add streets tile layer
-baseMaps.addTo(map);
+//baseMaps.addTo(map);
 
 //Accessing the aiport GeoJSON URL
 //let airportData = "https://raw.githubusercontent.com/DevTrav/Mapping_Earthquakes/Mapping_GeoJSON_Points/majorAirports.json";
