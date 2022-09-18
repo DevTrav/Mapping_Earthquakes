@@ -38,24 +38,24 @@ L.control.layers(baseMaps).addTo(map);
 //Accessing the Tornto airline routes GeoJSON URL
 let torontoData = "https://raw.githubusercontent.com/DevTrav/Mapping_Earthquakes/Mapping_GeoJSON_Linestrings/torontoRoutes.json";
 
+// Create a style for the lines.
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
 
 // Grabbing our GeoJSON data.
 d3.json(torontoData).then(function(data) {
     console.log(data);
 
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJSON(data, {
-    // We turn each feature into a marker on the map
-  pointToLayer: function(feature, latlng) {
-      console.log(feature);
-      return L.marker(latlng)
-      .bindPopup("<h1>" +'Airport code:' + ' ' + feature.properties.airline + "</h1>" + "<hr/>" + "<h2>" + 'Airport name:'+ ' ' + feature.properties.dst +"</h2");
-    },
-    style: function(){
-      return { color: 'yellow', weight: 2}
-    }
-}).addTo(map);
-     
-  
+L.geoJson(data, {
+  style: myStyle,
+  onEachFeature: function(feature, layer) {
+      layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr><h3> Destination: "
+      + feature.properties.dst + "</h3>");
+  }
+})
+.addTo(map);
 });
 
