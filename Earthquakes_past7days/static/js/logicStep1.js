@@ -34,7 +34,7 @@ L.control.layers(baseMaps).addTo(map);
 // Add streets tile layer
 //baseMaps.addTo(map);
 
-//Accessing the Tornto airline routes GeoJSON URL
+//Accessing 7-day USGS GeoJSON data URL
 let all_week = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 
