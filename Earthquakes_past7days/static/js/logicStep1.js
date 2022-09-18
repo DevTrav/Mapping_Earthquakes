@@ -18,14 +18,16 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 // Create a base layer that holds both maps.
 let baseMaps = {
     "Streets": streets ,
-    "Satellite Streets": satelliteStreets
+    "Satellite": satelliteStreets
   };
+
   // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-    center: [43.7, -79.3],
-    zoom: 11,
+    center: [39.5, -98.5],
+    zoom: 3,
     layers: [streets]
 })
+
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
@@ -33,25 +35,13 @@ L.control.layers(baseMaps).addTo(map);
 //baseMaps.addTo(map);
 
 //Accessing the Tornto airline routes GeoJSON URL
-let torontoHoods = "https://raw.githubusercontent.com/DevTrav/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/torontoNeighborhoods.json";
+let all_week = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
-// Create a style for the lines.
-let myStyle = {
-  fillColor: "#ffffa1",
-  weight: 1
-}
 
 // Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
-    console.log(data);
+d3.json(all_week).then(function(data) {
 
   // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data, {
-  style: myStyle,
-  onEachFeature: function(feature, layer) {
-      layer.bindPopup("<h3> Neighborhood: " + feature.properties.AREA_NAME + "</h3>");
-  }
-}) 
-.addTo(map);
+L.geoJson(data).addTo(map);
 });
 
